@@ -1,3 +1,36 @@
 baseURL = 'http://example.org/'
 languageCode = 'en-us'
 title = 'My New Hugo Site'
+theme = "hugo-theme-nightfall"
+
+[params]
+author = "Subhomoy Roy Choudhury"
+user = "blog"
+hostname = "oderna.in"
+
+[[params.social]]
+key = 0
+name = "github"
+url = "https://github.com/subhomoy-roy-choudhury"
+icon = "fa-brands fa-github"  # Add link to your icon font to `layouts/partials/custom-head.html`
+
+[[params.social]]
+key = 1
+name = "twitter"
+url = "https://twitter.com/tribrid2000"
+
+[[params.social]]
+key = 2
+name = "linkedin"
+url = "https://www.linkedin.com/in/subhomoy-roy-choudhury-70aab81a7/"
+
+[[params.social]]
+key = 3
+name = "email"
+url = "mailto:subhomoyrchoudhury@gmail.com"
+
+[menu]
+  [[menu.header]]
+    name = "posts"
+    weight = 0
+    url = "/posts"
