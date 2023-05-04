@@ -1,0 +1,70 @@
+# Sample workflow for building and deploying a Hugo site to GitHub Pages
+name: Deploy Hugo site to Pages
+
+on:
+  # Runs on pushes targeting the default branch
+  push:
+    branches: ["master"]
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# Allow one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+# Default to bash
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  # Build job
+  build:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: 🛒 Checkout
+        uses: actions/checkout@v2
+
+      - name: ✨ Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.105.0"
+
+      - name: 🛠️ Build
+        run: hugo --minify
+
+  # Deployment job
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+          fetch-depth: 0
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: "0.105.0"
+      - name: Generate Static Content
+        run: hugo --minify
+      - name: Deploy to Netlify
+        uses: nwtgck/actions-netlify@v1.2
+        env:
+          #NETLIFY_AUTH_TOKEN: "p3SqfvgsvzehyfwmSdSNte6_fgdW9iSoIfBqeIYPfkU"
+          #NETLIFY_SITE_ID: "4089c118-22c3-4d78-be10-99e152b2b133"
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        with:
+          publish-dir: "./public"
+          production-branch: master
+          #production-deploy: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deployed with GitHub Actions"
+          enable-pull-request-comment: true
+          enable-commit-comment: false
+          enable-commit-status: true
+          overwrites-pull-request-comment: true
+        timeout-minutes: 1
