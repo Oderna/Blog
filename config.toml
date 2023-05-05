@@ -1,6 +1,6 @@
-baseURL = "http://{{ .Site.Params.domain }}"
+baseURL = "https://oderna.in"
 languageCode = 'en-us'
-title = 'My New Hugo Site'
+title = 'Oderna Technologies Blogs'
 theme = "hugo-theme-nightfall"
 
 [params]
