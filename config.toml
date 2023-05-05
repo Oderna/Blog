@@ -1,4 +1,4 @@
-baseURL = "https://oderna.in"
+baseURL = "https://blog.oderna.in"
 languageCode = 'en-us'
 title = 'Oderna Technologies Blogs'
 theme = "hugo-theme-nightfall"
