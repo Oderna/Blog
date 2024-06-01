@@ -1,7 +1,7 @@
 baseURL = "https://blog.oderna.in"
 languageCode = 'en-us'
 title = 'Oderna Technologies Blogs'
-theme = "hugo-theme-nightfall"
+theme = ["hugo-theme-nightfall", "hugo-dynamic-tabs"]
 
 [params]
 author = "Subhomoy Roy Choudhury"
